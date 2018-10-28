@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- 国际化编码 -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <!-- 让IE浏览器使用最高的版本进行渲染 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
+  <meta charset="utf-8">
+  <title>后台管理系统</title>
+  <style type="text/css">
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    * {
+      outline: none;
+    }
+
+    body {
+      background: url(/static/img/bg.jpeg) no-repeat;
+      background-size: 100% 100%;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    input::-webkit-input-placeholder {
+      /* WebKit browsers */
+      color: #ccc;
+    }
+
+    input:-moz-placeholder {
+      /* Mozilla Firefox 4 to 18 */
+      color: #ccc;
+    }
+
+    input::-moz-placeholder {
+      /* Mozilla Firefox 19+ */
+      color: #ccc;
+    }
+
+    input:-ms-input-placeholder {
+      /* Internet Explorer 10+ */
+      color: #ccc;
+    }
+
+    input:-webkit-autofill {
+      -webkit-animation: autofill-fix 1s infinite;
+      -webkit-text-fill-color: #ccc;
+    }
+
+    @-webkit-keyframes autofill-fix {
+      from {
+        background-color: transparent
+      }
+
+      to {
+        background-color: transparent
+      }
+    }
+
+    ::-webkit-input-placeholder {
+      color: #ccc;
+    }
+
+    :-moz-placeholder {
+      color: #ccc;
+    }
+
+    ::-moz-placeholder {
+      color: #ccc;
+    }
+
+    :-ms-input-placeholder {
+      color: #ccc;
+    }
+
+    div {
+      box-sizing: border-box;
+    }
+
+    .login-container {
+      position: relative;
+      height: 100%;
+    }
+
+    .login-container .login-form {
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 400px;
+      padding: 35px 35px 15px;
+      margin: 260px auto;
+      box-sizing: border-box;
+    }
+
+    .login-container .title {
+      font-size: 26px;
+      font-weight: 400;
+      color: #eee;
+      margin: 0 auto 40px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .login-container .form-item {
+      border: 1px solid hsla(0, 0%, 100%, .1);
+      background: rgba(0, 0, 0, .1);
+      border-radius: 5px;
+      color: #454545;
+      margin-bottom: 22px;
+    }
+
+    .form-item__content {
+      line-height: 36px;
+      position: relative;
+      font-size: 14px;
+    }
+
+    .login-container .svg-container {
+      padding: 6px 7px 6px 10px;
+      width: 50px;
+      float: left;
+      text-align: center;
+      color: #889aa4;
+      border-right: 1px solid hsla(0, 0%, 100%, .1);
+    }
+
+    .login-container .input {
+      display: inline-block;
+      height: 47px;
+      width: -moz-calc(100% - 68px);
+      width: -webkit-calc(100% - 68px);
+      width: calc(100% - 68px);
+    }
+
+    .input {
+      position: relative;
+      font-size: 14px;
+      width: 100%;
+    }
+
+    .login-container input {
+      background: transparent;
+      border: 0;
+      -webkit-appearance: none;
+      border-radius: 0;
+      padding: 12px 5px 12px 15px;
+      color: #eee;
+      height: 47px;
+    }
+
+    .input__inner {
+      -moz-appearance: none;
+      appearance: none;
+      background-color: #fff;
+      border-radius: 4px;
+      border: 1px solid rgb(191, 203, 217);
+      color: rgb(31, 45, 61);
+      height: 36px;
+      padding: 3px 10px;
+      transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+      width: 100%;
+    }
+
+    .input__inner,
+    .textarea__inner {
+      box-sizing: border-box;
+      background-image: none;
+    }
+
+    .button {
+      white-space: nowrap;
+      cursor: pointer;
+      background: #fff;
+      border: 1px solid #c4c4c4;
+      color: rgb(31, 45, 61);
+      text-align: center;
+      box-sizing: border-box;
+      margin: 0;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      padding: 10px 15px;
+      font-size: 14px;
+      border-radius: 4px;
+    }
+
+    .btn-primary {
+      color: #fff;
+      background-color: #20a0ff;
+      border-color: #20a0ff;
+    }
+
+    .error {
+      position: absolute;
+      left: 50%;
+      margin-left: -150px;
+      width: 300px;
+      height: 48px;
+      background-color: rgb(250, 255, 189);
+      font-size: 14px;
+      color: #999;
+      border-radius: 5px;
+      padding: 0 20px;
+      line-height: 48px;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <form class="login-form" autocomplete="on">
+      <h3 class="title">vue + element</h3>
+      <div class="form-item">
+        <div class="form-item__content" style="margin-left: 0px;">
+          <span class="svg-container">
+            用户名
+          </span>
+          <div class="input">
+            <input
+              autocomplete="off"
+              placeholder="手机号/邮箱/用户名"
+              type="text"
+              class="input__inner username"
+              autofocus
+              style="background-color: transparent!important">
+          </div>
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="form-item__content" style="margin-left: 0px;">
+          <span class="svg-container">
+            密&nbsp;&nbsp;码
+          </span>
+          <div class="input">
+            <input
+              autocomplete="off"
+              placeholder="密码"
+              type="password"
+              class="input__inner password"
+              style="background-color: transparent!important">
+          </div>
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="form-item__content" style="margin-left: 0px;">
+          <button type="button" class="button btn-primary" style="width: 100%;">
+            <span>
+              登录
+            </span>
+          </button>
+        </div>
+      </div>
+      <div class="error"></div>
+    </form>
+  </div>
+</body>
+<script type="text/javascript" src="/static/plugin/jquery.min.js"></script>
+<script type="text/javascript">
+  $('.btn-primary').click(login)
+  $('.username, .password').bind('keypress', function (event) {
+    if (event.keyCode == 13) {
+      login()
+    }
+  })
+  function login() {
+    var username = $('.username').val().trim()
+    var password = $('.password').val().trim()
+    if (!username) {
+      error('请输入用户名')
+      return
+    }
+    if (!password) {
+      error('请输入密码')
+      return
+    }
+    if (username !== 'lhajh') {
+      error('用户名错误')
+      return
+    }
+    if (password !== '5201314') {
+      error('密码错误')
+      return
+    }
+    window.location.href = '/#/TreeCheckboxs'
+  }
+  function error(text) {
+    $('.error').text(text).fadeIn(100, function () {
+      var $that = $(this)
+      setTimeout(function () {
+        $that.fadeOut(3000)
+      }, 3000)
+    })
+  }
+</script>
+
+</html>

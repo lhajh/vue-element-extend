@@ -1,0 +1,129 @@
+body,
+html {
+  height: 100%;
+}
+div {
+  box-sizing: border-box;
+}
+
+input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #ccc;
+}
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #ccc;
+}
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #ccc;
+}
+input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #ccc;
+}
+
+/* 通过延长增加自动填充背景色的方式, 使用户感受不到样式的变化 */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-transition-delay: 99999s;
+  -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+}
+::-webkit-input-placeholder {
+  color: #ccc;
+}
+:-moz-placeholder {
+  color: #ccc;
+}
+::-moz-placeholder {
+  color: #ccc;
+}
+:-ms-input-placeholder {
+  color: #ccc;
+}
+
+.h100 {
+  height: 100%;
+}
+
+/* el-scrollbar */
+.el-scrollbar {
+  height: 100%;
+  margin-right: -10px;
+}
+.el-scrollbar .el-scrollbar__wrap {
+  overflow-x: auto;
+}
+.el-scrollbar__view {
+  padding-right: 10px;
+}
+.el-scrollbar__bar .el-scrollbar__thumb {
+  background: rgba(64, 160, 255, 0.5);
+}
+.el-scrollbar__bar .el-scrollbar__thumb:hover {
+  background: rgba(64, 160, 255, 0.7);
+}
+/* 修改 scrollbar 在 select 下显示不全问题 */
+.el-select-dropdown .el-scrollbar {
+  height: auto;
+  margin-right: 0;
+}
+.el-select-dropdown .el-scrollbar .el-scrollbar__wrap {
+  overflow: scroll;
+}
+.el-select-dropdown .el-scrollbar .el-scrollbar__wrap .el-scrollbar__view {
+  padding-right: 0;
+}
+
+/* 清除浮动 */
+.clearfix:before,
+.clearfix:after {
+  display: table!important;
+  content: "" !important;
+}
+.clearfix:after {
+  clear: both!important;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-center {
+  text-align: center;
+}
+.vertical-middle {
+  position: absolute!important;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+  right: 10px;
+}
+.center-middle {
+  position: absolute!important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* vue-echarts */
+.echarts-container{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.echarts-container .echarts {
+  width: 100%;
+  height: 100%;
+}
+.echarts>:first-child {
+  height: 100%!important;
+}
+.echarts div canvas {
+  height: 100%!important;
+}

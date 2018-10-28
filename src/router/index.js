@@ -1,0 +1,67 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+
+import Body from 'common/Body'
+
+import EditableTable from 'business/element-ui/EditableTable'
+import TreeCheckboxs from 'business/element-ui/TreeCheckboxs'
+import Upload from 'business/element-ui/Upload'
+import BaseBarChart from 'business/echart/BaseBarChart'
+import BaseLineChart from 'business/echart/BaseLineChart'
+import BasePieChart from 'business/echart/BasePieChart'
+import ProgressBarChart from 'business/echart/ProgressBarChart'
+import ProgressLineChart from 'business/echart/ProgressLineChart'
+
+Vue.use(Router)
+
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Body',
+      component: Body,
+      children: [
+        {
+          path: '/EditableTable',
+          name: 'EditableTable',
+          component: EditableTable
+        },
+        {
+          path: '/TreeCheckboxs',
+          name: 'TreeCheckboxs',
+          component: TreeCheckboxs
+        },
+        {
+          path: '/Upload',
+          name: 'Upload',
+          component: Upload
+        },
+        {
+          path: '/BaseBarChart',
+          name: 'BaseBarChart',
+          component: BaseBarChart
+        },
+        {
+          path: '/BaseLineChart',
+          name: 'BaseLineChart',
+          component: BaseLineChart
+        },
+        {
+          path: '/BasePieChart',
+          name: 'BasePieChart',
+          component: BasePieChart
+        },
+        {
+          path: '/ProgressBarChart',
+          name: 'ProgressBarChart',
+          component: ProgressBarChart
+        },
+        {
+          path: '/ProgressLineChart',
+          name: 'ProgressLineChart',
+          component: ProgressLineChart
+        }
+      ]
+    }
+  ]
+})
