@@ -55,7 +55,7 @@ export default {
           id: 4,
           bar: {
             isGradient: true,
-            color: ['#b8acfe', '#755ffc'],
+            color: ['#49fed4', '#04c792'],
             text: '缩放',
             xAxis: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             yAxis: [820, 932, 901, 934, 1290, 1330, 1320, 820, 932, 901, 934, 1290, 1330, 1320],
@@ -99,7 +99,7 @@ export default {
     padding: 10px;
     .el-col {
       height: 300px;
-      margin-bottom: 20px;
+      margin-bottom: 50px;
     }
   }
 </style>

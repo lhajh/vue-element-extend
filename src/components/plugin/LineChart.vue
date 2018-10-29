@@ -30,7 +30,18 @@ export default {
     return {
       polar: {},
       title: '',
-      baseColor: ['#e53030', '#e7aa27', '#79cd36', '#0fb3f2', '#bd20d4', '#2073d9', '#73a373', '#73b9bc', '#7289ab', '#91ca8c', '#f49f42']
+      baseColor: [
+        '#ffff00',
+        '#007fff',
+        '#fe90bf',
+        '#11feef',
+        '#ff3890',
+        '#ff644b',
+        '#29c342',
+        '#ff9600',
+        '#a34be0',
+        '#11b0ff'
+      ]
     }
   },
   watch: {

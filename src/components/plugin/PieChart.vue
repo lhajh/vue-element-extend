@@ -12,6 +12,7 @@
 
 <script>
 import NoData from './NoData'
+import { checkParameter } from 'utils/toggle'
 export default {
   name: 'PieChart',
   props: {
@@ -29,7 +30,18 @@ export default {
     return {
       polar: {},
       title: '',
-      baseColor: ['#e53030', '#e7aa27', '#79cd36', '#0fb3f2', '#bd20d4', '#2073d9', '#73a373', '#73b9bc', '#7289ab', '#91ca8c', '#f49f42']
+      baseColor: [
+        '#ffff00',
+        '#007fff',
+        '#fe90bf',
+        '#11feef',
+        '#ff3890',
+        '#ff644b',
+        '#29c342',
+        '#ff9600',
+        '#a34be0',
+        '#11b0ff'
+      ]
     }
   },
   watch: {
@@ -56,8 +68,8 @@ export default {
           show: this.options.showLegend,
           data: this.options.legendData,
           orient: this.options.legendOrient || 'horizontal',
-          left: this.options.legendLeft || 20,
-          top: this.options.legendTop || 30,
+          left: checkParameter(this.options.legendLeft, 20),
+          top: checkParameter(this.options.legendTop, 30),
           textStyle: {
             color: this.options.legendColor || '#fff'
           }
@@ -66,7 +78,7 @@ export default {
         tooltip: {
           show: !this.options.hideTooltip,
           trigger: 'item',
-          formatter: '{b}: {c} ({d}%)'
+          formatter: this.options.formatTip || '{b}: {c} ({d}%)'
         },
         // 工具栏
         toolbox: {
@@ -78,8 +90,8 @@ export default {
               backgroundColor: 'rgba(0, 35, 55, 0.4)'
             }
           },
-          right: this.options.toolboxRight || 25,
-          top: this.options.toolboxTop || 30,
+          right: checkParameter(this.options.toolboxRight, 25),
+          top: checkParameter(this.options.toolboxTop, 30),
           iconStyle: {
             normal: {
               borderColor: '#fff'
@@ -90,12 +102,14 @@ export default {
           { // 内环
             name: this.options.text,
             type: 'pie',
-            radius: this.options.inradius,
+            radius: this.options.inradius || ['50%', '70%'],
+            // 是否展示成南丁格尔图
+            roseType: this.options.roseType || false,
             selectedMode: 'single',
             label: {
               normal: {
                 show: !this.options.outradius,
-                formatter: '{b}：{c}'
+                formatter: this.options.formatter || '{b}：{c}'
               }
             },
             labelLine: {
@@ -112,7 +126,7 @@ export default {
             label: {
               normal: {
                 show: !!this.options.outradius,
-                formatter: '{b}: {c}'
+                formatter: this.options.formatter || '{b}: {c}'
               }
             },
             labelLine: {

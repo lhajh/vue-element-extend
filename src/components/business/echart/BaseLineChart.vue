@@ -25,7 +25,7 @@ export default {
           line: {
             hideMark: true,
             text: '基础',
-            color: ['#bd20d4'],
+            color: ['#ffff00'],
             xAxis: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             yAxis: [820, 932, 901, 934, 1290, 1330, 1320],
             minRange: function (value) {
@@ -39,7 +39,7 @@ export default {
             hideMark: true,
             showLabel: true,
             symbolSize: 30,
-            color: ['#0fb3f2'],
+            color: ['#007fff'],
             text: '文字在圆圈里',
             xAxis: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             yAxis: [820, 932, 901, 934, 1290, 1330, 1320],
@@ -52,7 +52,7 @@ export default {
           id: 3,
           line: {
             text: '气球',
-            color: ['#79cd36'],
+            color: ['#fe90bf'],
             xAxis: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             yAxis: [820, 932, 901, 934, 1290, 1330, 1320],
             minRange: function (value) {
@@ -66,7 +66,7 @@ export default {
             hideMark: true,
             areaOpacity: 1,
             text: '颜色区域渐变',
-            color: ['#00aaff', '#8fcdec'],
+            color: ['#4cc3ff', '#00aaff'],
             xAxis: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             yAxis: [820, 932, 901, 934, 1290, 1330, 1320],
             minRange: function (value) {
@@ -83,7 +83,7 @@ export default {
             minRange: Math.min.apply(null, [820, 932, 901, 934, 1290, 1330, 1320]) - 5,
             maxRange: Math.max.apply(null, [820, 932, 901, 934, 1290, 1330, 1320]) + 5,
             yAxisSplitNumber: 3,
-            color: ['#f8cf5c', 'transparent'],
+            color: ['#11feef', 'transparent'],
             hideTooltip: true,
             hideToolBox: true,
             gridTop: '20%',
@@ -103,7 +103,7 @@ export default {
           id: 6,
           line: {
             text: '缩放',
-            color: ['#e7aa27'],
+            color: ['#ff3890'],
             symbolSize: 5,
             xAxis: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             yAxis: [820, 932, 901, 934, 1290, 1330, 1320, 820, 932, 901, 934, 1290, 1330, 1320],
@@ -146,7 +146,7 @@ export default {
     padding: 10px;
     .el-col {
       height: 300px;
-      margin-bottom: 20px;
+      margin-bottom: 50px;
     }
   }
 </style>

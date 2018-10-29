@@ -10,7 +10,7 @@ import BaseBarChart from 'business/echart/BaseBarChart'
 import BaseLineChart from 'business/echart/BaseLineChart'
 import BasePieChart from 'business/echart/BasePieChart'
 import ProgressBarChart from 'business/echart/ProgressBarChart'
-import ProgressLineChart from 'business/echart/ProgressLineChart'
+import ProgressPieChart from 'business/echart/ProgressPieChart'
 
 Vue.use(Router)
 
@@ -57,9 +57,9 @@ export default new Router({
           component: ProgressBarChart
         },
         {
-          path: '/ProgressLineChart',
-          name: 'ProgressLineChart',
-          component: ProgressLineChart
+          path: '/ProgressPieChart',
+          name: 'ProgressPieChart',
+          component: ProgressPieChart
         }
       ]
     }

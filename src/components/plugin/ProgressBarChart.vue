@@ -30,7 +30,30 @@ export default {
     return {
       polar: {},
       title: '',
-      baseColor: ['#45a1f8', '#e7aa27', '#79cd36', '#0fb3f2', '#bd20d4', '#2073d9', '#73a373', '#73b9bc', '#7289ab', '#91ca8c', '#f49f42']
+      baseColor: [
+        '#ffff00',
+        '#007fff',
+        '#fe90bf',
+        '#11feef',
+        '#ff3890',
+        '#ff644b',
+        '#29c342',
+        '#ff9600',
+        '#a34be0',
+        '#11b0ff'
+      ],
+      baseColors: [
+        ['#4cc3ff', '#00aaff'],
+        ['#d075eb', '#bc15fa'],
+        ['#f8cf5c', '#fdba00'],
+        ['#80ff94', '#1bb934'],
+        ['#b8acfe', '#755ffc'],
+        ['#ff9897', '#f650a0'],
+        ['#ffa62e', '#ea5c0f'],
+        ['#49fed4', '#04c792'],
+        ['#7789f9', '#2a4ff3'],
+        ['#fc557c', '#fe2457']
+      ]
     }
   },
   watch: {
@@ -190,11 +213,23 @@ export default {
             itemStyle: {
               normal: {
                 barBorderRadius: checkParameter(this.options.insideRadius, 25),
+                // 添加一个是否渐变
                 color: function (params) {
                   let color = that.options.color || that.baseColor
                   let num = color.length
                   return color[params.dataIndex % num]
                 }
+                // color: {
+                //   colorStops: [{
+                //     offset: 0,
+                //     color: '#3dc0e9' // 0% 处的颜色
+                //   }, {
+                //     offset: 1,
+                //     color: '#45e3cf' // 100% 处的颜色
+                //   }],
+                //   globalCoord: false // 缺省为 false
+
+                // }
               }
             },
             label: {

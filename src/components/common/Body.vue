@@ -50,8 +50,8 @@ export default {
             'BaseLineChart',
             'BaseBarChart',
             'BasePieChart',
-            'ProgressLineChart',
-            'ProgressBarChart'
+            'ProgressBarChart',
+            'ProgressPieChart'
           ]
         }
       ],
