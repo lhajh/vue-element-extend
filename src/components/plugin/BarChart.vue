@@ -32,7 +32,7 @@ export default {
       polar: {},
       title: '',
       baseColor: [
-        '#ffff00',
+        '#2e8a00',
         '#007fff',
         '#fe90bf',
         '#11feef',

@@ -31,7 +31,18 @@ export default {
     return {
       polar: {},
       title: '',
-      baseColor: ['#e53030', '#e7aa27', '#79cd36', '#0fb3f2', '#bd20d4', '#2073d9', '#73a373', '#73b9bc', '#7289ab', '#91ca8c', '#f49f42']
+      baseColor: [
+        '#2e8a00',
+        '#007fff',
+        '#fe90bf',
+        '#11feef',
+        '#ff3890',
+        '#ff644b',
+        '#29c342',
+        '#ff9600',
+        '#a34be0',
+        '#11b0ff'
+      ]
     }
   },
   watch: {
@@ -49,7 +60,7 @@ export default {
           text: this.options.text || '',
           textStyle: {
             color: this.options.textColor || '#fff',
-            fontSize: 14
+            fontSize: this.options.textSize || 14
           },
           subtext: this.options.subtext || '',
           top: checkParameter(this.options.titleTop, '85%'),
@@ -101,11 +112,11 @@ export default {
               new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                 {
                   offset: 0,
-                  color: this.options.colors[0] || '#00a2ff'
+                  color: this.options.color ? this.options.color[0] : this.baseColor[0]
                 },
                 {
                   offset: 1,
-                  color: this.options.colors[1] || '#70ffac'
+                  color: this.options.color ? this.options.color[1] : this.baseColor[1]
                 }
               ]),
               this.options.seriesBg || 'rgba(104, 151, 175, .32)'
@@ -127,7 +138,7 @@ export default {
                 label: {
                   normal: {
                     textStyle: {
-                      color: this.options.colors[1],
+                      color: this.options.color ? this.options.color[1] : this.baseColor[1],
                       fontSize: this.options.dataSize || 30
                     }
                   }
@@ -139,7 +150,7 @@ export default {
                 label: {
                   normal: {
                     textStyle: {
-                      color: this.options.colors[0],
+                      color: this.options.color ? this.options.color[0] : this.baseColor[0],
                       fontSize: this.options.statusSize || 14
                     }
                   }

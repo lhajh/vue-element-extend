@@ -31,7 +31,7 @@ export default {
       polar: {},
       title: '',
       baseColor: [
-        '#ffff00',
+        '#2e8a00',
         '#007fff',
         '#fe90bf',
         '#11feef',
@@ -214,22 +214,26 @@ export default {
               normal: {
                 barBorderRadius: checkParameter(this.options.insideRadius, 25),
                 // 添加一个是否渐变
-                color: function (params) {
-                  let color = that.options.color || that.baseColor
-                  let num = color.length
-                  return color[params.dataIndex % num]
+                color (params) {
+                  if (that.options.isGradient) {
+                    let color = that.options.color || that.baseColors
+                    let num = color.length
+                    return {
+                      colorStops: [{
+                        offset: 0,
+                        color: color[params.dataIndex % num][0] // 0% 处的颜色
+                      }, {
+                        offset: 1,
+                        color: color[params.dataIndex % num][1] // 100% 处的颜色
+                      }],
+                      globalCoord: false // 缺省为 false
+                    }
+                  } else {
+                    let color = that.options.color || that.baseColor
+                    let num = color.length
+                    return color[params.dataIndex % num]
+                  }
                 }
-                // color: {
-                //   colorStops: [{
-                //     offset: 0,
-                //     color: '#3dc0e9' // 0% 处的颜色
-                //   }, {
-                //     offset: 1,
-                //     color: '#45e3cf' // 100% 处的颜色
-                //   }],
-                //   globalCoord: false // 缺省为 false
-
-                // }
               }
             },
             label: {
