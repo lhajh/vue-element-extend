@@ -14,11 +14,13 @@
       :disabled="disabled"
       :show-file-list="showList"
       :file-list="fileList"
-      :on-preview="handlePreview"
-      :on-remove="uploadRemove"
-      :on-success="uploadSuccess"
-      :on-error="uploadError"
-      :on-progress="progress"
+      :list-type="listType"
+      :on-preview="onPreview"
+      :before-remove="beforeRemove"
+      :on-remove="onRemove"
+      :on-success="onSuccess"
+      :on-error="onError"
+      :on-progress="onProgress"
       :before-upload="beforeUpload">
       <div v-if="picture">
         <img v-if="imageUrl" :src="imageUrl" class="avatar"
@@ -26,6 +28,10 @@
         <vue-video v-else-if="videoSrc" :videoSrc="videoSrc" :videoHeight="height" :videoWidth="width"></vue-video>
         <i v-else class="el-icon-plus avatar-uploader-icon"
           :style="{width, height, lineHeight}"></i>
+      </div>
+      <div v-else-if="drag">
+        <i class="el-icon-upload"></i>
+        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
       </div>
       <div v-else>
         <el-button
@@ -85,8 +91,6 @@
 </template>
 
 <script>
-import api from 'api'
-import GetUserInfo from 'mixins/getUserInfo'
 import VueVideo from 'plugin/VueVideo'
 export default {
   that: this,
@@ -94,12 +98,13 @@ export default {
   components: {
     VueVideo
   },
-  mixins: [GetUserInfo],
+  mixins: [],
   props: {
     // 上传路径
-    actionUrl: {
+    action: {
       type: String,
-      default: ''
+      default: '',
+      required: true
     },
     // 提示按钮文字
     text: {
@@ -141,11 +146,6 @@ export default {
       type: String,
       default: ''
     },
-    // 上传文件类型
-    fileType: {
-      type: String,
-      default: ''
-    },
     // 提示
     tip: {
       type: String,
@@ -175,11 +175,6 @@ export default {
       type: String,
       default: '100px'
     },
-    // admin 上传需要该参数
-    adminParkId: {
-      type: String,
-      default: ''
-    },
     // 参数
     data: {
       type: Object,
@@ -193,6 +188,11 @@ export default {
       default () {
         return []
       }
+    },
+    // 列表类型
+    listType: {
+      type: String,
+      default: 'text'
     },
     // 是否显示图标，默认不显示
     icon: {
@@ -225,20 +225,21 @@ export default {
       default: false
     },
     // 移除
-    uploadRemove: Function,
+    beforeRemove: Function,
+    onRemove: Function,
     // 成功回调
-    uploadSuccess: {
+    onSuccess: {
       type: Function,
       required: true
     },
     // 上传前自定义校验
     regUpload: Function,
-    handlePreview: Function
+    // 预览
+    onPreview: Function
   },
   data () {
     return {
       uploadParams: {},
-      action: '',
       files: []
     }
   },
@@ -255,11 +256,6 @@ export default {
         }
       },
       deep: true
-    },
-    adminParkId (data) {
-      if (data) {
-        this.action = this.actionUrl || api.uploadFile(data)
-      }
     },
     data (data) {
       this.uploadParams = {
@@ -279,7 +275,7 @@ export default {
     },
     // 获取上传策略
     fetchPolicy () {
-      this.$get(api.fetchPolicy(this.adminParkId || this.parkId)).then(res => {
+      this.$get('url').then(res => {
         for (const key in res.data) {
           if (res.data.hasOwnProperty(key)) {
             this.uploadParams[key] = res.data[key]
@@ -307,16 +303,16 @@ export default {
         // if (this.uploadParams.expire && this.uploadParams.expire < now + 3) {
         //   this.fetchGetPolicy()
         // }
-        this.uploadParams.key = this.$moment(new Date().getTime()).format('YYYYMMDDHHmmss') + this.getSuffix(file.name)
+        this.uploadParams.key = Date.now() + this.getSuffix(file.name)
       }
       return isLt500M && (this.regUpload ? this.regUpload(file) : true)
     },
     // 上传进度条
-    progress (event, file, fileList) {
+    onProgress (event, file, fileList) {
       this.files = fileList
     },
     // 上传失败
-    uploadError () {
+    onError () {
       this.$mes.warning('上传失败，请重新上传')
     },
     // 取消上传
@@ -354,19 +350,19 @@ export default {
       }
     },
     handleClick (file) {
-      this.handlePreview && this.handlePreview(file)
+      this.onPreview && this.onPreview(file)
     },
     init () {
       // this.fetchPolicy()
       this.uploadParams = {
-        ...this.data,
-        fileType: this.fileType
+        ...this.data
       }
-      this.action = this.actionUrl || api.uploadFile(this.adminParkId || this.parkId)
     }
   },
   created () {},
-  mounted () {}
+  mounted () {
+    this.init()
+  }
 }
 </script>
 
