@@ -297,7 +297,7 @@ export default {
     beforeUpload (file) {
       const isLt500M = file.size / 1024 / 1024 < 500
       if (!isLt500M) {
-        this.$mes.warning('上传文件大小不能超过 500MB!')
+        this.$message.warning('上传文件大小不能超过 500MB!')
       } else {
         // let now = Date.parse(new Date()) / 1000
         // if (this.uploadParams.expire && this.uploadParams.expire < now + 3) {
@@ -313,7 +313,7 @@ export default {
     },
     // 上传失败
     onError () {
-      this.$mes.warning('上传失败，请重新上传')
+      this.$message.warning('上传失败，请重新上传')
     },
     // 取消上传
     remove (file) {
