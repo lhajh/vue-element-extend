@@ -10,7 +10,7 @@
       @click="nextData()">
       <i class="el-icon-arrow-right"></i>
     </span>
-    <bar-chart :options="options" @item-click="itemClick"></bar-chart>
+    <bar-chart :options="data" @item-click="itemClick"></bar-chart>
   </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
   components: { BarChart },
   mixins: [],
   props: {
-    data: {
+    options: {
       type: Object,
       default () {
         return {}
@@ -35,22 +35,22 @@ export default {
       next: false,
       space: 4,
       num: 0,
-      options: {}
+      data: {}
     }
   },
   computed: {},
   watch: {
-    data: {
+    options: {
       handler: function () {
         this.arrow = false
         this.prev = false
         this.next = false
         this.num = 0
-        this.space = this.data.space || this.space
-        if (this.data.xAxis) {
+        this.space = this.options.space || this.space
+        if (this.options.xAxis) {
           this.nextData()
         } else {
-          this.options = {}
+          this.data = {}
         }
       },
       deep: true
@@ -59,65 +59,43 @@ export default {
   methods: {
     prevData () {
       if (!this.prev) {
-        let len = this.data.xAxis.length
         this.num--
-        this.options = {}
-        this.$nextTick(() => {
-          this.options = { ...this.data }
-          this.options.xAxis = this.data.xAxis.slice(
-            this.space * (this.num - 1),
-            this.space * this.num
-          )
-          if (this.multiarr(this.data.yAxis)) {
-            this.options.yAxis = this.data.yAxis.map(item =>
-              item.slice(this.space * (this.num - 1), this.space * this.num)
-            )
-          } else {
-            this.options.yAxis = this.data.yAxis.slice(
-              this.space * (this.num - 1),
-              this.space * this.num
-            )
-          }
-          if (this.data.reverse) {
-            this.options.xAxis = this.options.xAxis.reverse()
-            this.options.yAxis = this.options.yAxis.reverse()
-          }
-        })
-        this.arrow = len > this.space
-        this.prev = !(this.num - 1)
-        this.next = !(len > this.space * this.num)
+        this.handleData()
       }
     },
     nextData () {
       if (!this.next) {
-        let len = this.data.xAxis.length
         this.num++
-        this.options = {}
-        this.$nextTick(() => {
-          this.options = { ...this.data }
-          this.options.xAxis = this.data.xAxis.slice(
+        this.handleData()
+      }
+    },
+    handleData () {
+      let len = this.options.xAxis.length
+      this.data = {}
+      this.$nextTick(() => {
+        this.data = { ...this.options }
+        this.data.xAxis = this.options.xAxis.slice(
+          this.space * (this.num - 1),
+          this.space * this.num
+        )
+        if (this.multiarr(this.options.yAxis)) {
+          this.data.yAxis = this.options.yAxis.map(item =>
+            item.slice(this.space * (this.num - 1), this.space * this.num)
+          )
+        } else {
+          this.data.yAxis = this.options.yAxis.slice(
             this.space * (this.num - 1),
             this.space * this.num
           )
-          if (this.multiarr(this.data.yAxis)) {
-            this.options.yAxis = this.data.yAxis.map(item =>
-              item.slice(this.space * (this.num - 1), this.space * this.num)
-            )
-          } else {
-            this.options.yAxis = this.data.yAxis.slice(
-              this.space * (this.num - 1),
-              this.space * this.num
-            )
-          }
-          if (this.data.reverse) {
-            this.options.xAxis = this.options.xAxis.reverse()
-            this.options.yAxis = this.options.yAxis.reverse()
-          }
-        })
-        this.arrow = len > this.space
-        this.prev = !(this.num - 1)
-        this.next = !(len > this.space * this.num)
-      }
+        }
+        if (this.options.reverse) {
+          this.data.xAxis.reverse()
+          this.data.yAxis.reverse()
+        }
+      })
+      this.arrow = len > this.space
+      this.prev = !(this.num - 1)
+      this.next = !(len > this.space * this.num)
     },
     multiarr (arr) {
       for (let i = 0, len = arr.length; i < len; i++) if (arr[i] instanceof Array) return true
@@ -129,11 +107,11 @@ export default {
   },
   created () {},
   mounted () {
-    this.space = this.data.space || this.space
-    if (this.data.xAxis) {
+    this.space = this.options.space || this.space
+    if (this.options.xAxis) {
       this.nextData()
     } else {
-      this.options = {}
+      this.data = {}
     }
   }
 }
@@ -145,6 +123,7 @@ export default {
   .nav-arrow {
     position: absolute;
     top: 50%;
+    color: #fff;
     margin-top: -20px;
     height: 40px;
     line-height: 40px;
@@ -152,6 +131,9 @@ export default {
     &.disabled {
       cursor: not-allowed;
     }
+  }
+  .disabled {
+    color: #ccc;
   }
   .nav-prev {
     left: -10px;

@@ -51,7 +51,8 @@ export default {
             'BaseBarChart',
             'BasePieChart',
             'ProgressBarChart',
-            'ProgressPieChart'
+            'ProgressPieChart',
+            'BarArrowChart'
           ]
         }
       ],
