@@ -37,6 +37,12 @@ export default {
     return {
       router: [
         {
+          name: 'Vue',
+          child: [
+            'Modifiers'
+          ]
+        },
+        {
           name: 'ElementUI',
           child: [
             'TreeCheckboxs',

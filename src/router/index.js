@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Body from 'common/Body'
 
+import Modifiers from 'business/vue/Modifiers'
 import EditableTable from 'business/element-ui/EditableTable'
 import TreeCheckboxs from 'business/element-ui/TreeCheckboxs'
 import Upload from 'business/element-ui/Upload'
@@ -22,6 +23,11 @@ export default new Router({
       name: 'Body',
       component: Body,
       children: [
+        {
+          path: '/Modifiers',
+          name: 'Modifiers',
+          component: Modifiers
+        },
         {
           path: '/EditableTable',
           name: 'EditableTable',
