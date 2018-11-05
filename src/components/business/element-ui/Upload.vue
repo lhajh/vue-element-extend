@@ -84,8 +84,6 @@ export default {
 
 <style lang="less">
   .upload {
-    text-align: left;
-    color: #fff;
     h1 {
       font-size: 20px;
       margin-bottom: 20px;

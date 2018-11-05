@@ -333,7 +333,6 @@ export default {
 
 <style lang="less">
 .modifiers {
-  color: #fff;
   h2 {
     display: block;
     font-size: 1.5em;
