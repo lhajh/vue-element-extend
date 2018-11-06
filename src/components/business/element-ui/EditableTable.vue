@@ -1,5 +1,14 @@
 <template>
   <div class="editable-table">
+    <pre><code>
+  说明:
+
+    1. 名称 / 数据类型 / 值 是必填项; 有一项没有填写, 无法再新建 / 保存
+
+    2. 选择 数据类型 后才可以填写 值, 否则会有提示
+
+    3. 新增但没有保存, 数据类型 可以修改, 修改后 值 会重置为默认值; 保存后 数据类型 不可修改
+    </code></pre>
     <div class="button-group clearfix">
       <el-button type="primary"
         icon="el-icon-plus"
@@ -218,7 +227,6 @@ export default {
         ]
       }
       this.formatConfig(res.data)
-      this.computeHeight()
     },
     // 添加配置项
     addConfig () {
@@ -250,9 +258,9 @@ export default {
           this.formatConfig(this.configList)
           this.$message.success('删除成功')
         })
-        // 没有 id, 是本地新增还没有保存的, 而且只能是数组最后一个
+        // 没有 id, 是本地新增还没有保存的
       } else {
-        this.configList.pop()
+        this.configList.splice(this.configList.indexOf(row), 1)
       }
     },
     // 点击单元格
