@@ -254,8 +254,13 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         }).then(_ => {
-          this.configList.splice(this.configList.indexOf(row), 1)
-          this.formatConfig(this.configList)
+          // 如果已经编辑了, 删除某一项时, 不刷新列表; 否则重新获取数据
+          if (this.isEdited) {
+            this.configList.splice(this.configList.indexOf(row), 1)
+          } else {
+            this.configList.splice(this.configList.indexOf(row), 1)
+            this.formatConfig(this.configList)
+          }
           this.$message.success('删除成功')
         })
         // 没有 id, 是本地新增还没有保存的
@@ -272,7 +277,7 @@ export default {
         let property = firstUpperCase(event.property)
         this.disabledEdit()
         // 编辑 vaule 时, 如果数据类型没有值, 弹出警告
-        if (property === 'Value' && row.type === undefined) {
+        if (property === 'Value' && row.type === '') {
           this.$message.warning('请先选择数据类型')
           return
         }
