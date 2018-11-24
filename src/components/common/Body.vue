@@ -60,6 +60,12 @@ export default {
             'ProgressPieChart',
             'BarArrowChart'
           ]
+        },
+        {
+          name: 'Ueditor',
+          child: [
+            'Ue'
+          ]
         }
       ],
       activeIndex: url === -1 ? window.location.hash.substring(1) : window.location.hash.substring(1, +url + 1)

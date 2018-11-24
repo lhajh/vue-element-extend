@@ -12,7 +12,7 @@
 
 <script>
 import NoData from './NoData'
-import { checkParameter } from 'utils/toggle'
+import { checkParameter } from 'utils'
 export default {
   name: 'ProgressBarChart',
   props: {

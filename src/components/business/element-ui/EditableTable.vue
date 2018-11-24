@@ -116,7 +116,7 @@
 </template>
 
 <script>
-import { firstUpperCase } from 'utils/toggle'
+import { firstUpperCase } from 'utils'
 export default {
   name: 'EditableTable',
   components: {},

@@ -13,7 +13,7 @@
 <script>
 import NoData from './NoData'
 import echarts from 'echarts'
-import { checkParameter } from 'utils/toggle'
+import { checkParameter } from 'utils'
 export default {
   name: 'BarChart',
   props: {

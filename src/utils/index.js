@@ -59,6 +59,46 @@ export const checkParameter = (target, defaultVal) => (target === undefined ? de
 export const firstUpperCase = ([first, ...rest]) => first.toUpperCase() + rest.join('')
 
 /**
+ * 验证 props
+ */
+export const PROP = {
+  string: { type: String, 'default': '' },
+  strDef (def = '', required = false) {
+    if (typeof def !== 'string' && typeof def !== 'function') {
+      console.error('props 属性默认值类型要求为 string/function, 得到的为' + typeof def)
+    }
+    return { type: String, required, 'default': def }
+  },
+  boolean: { type: Boolean, 'default': false },
+  boolDef (def = false, required = false) {
+    if (typeof def !== 'boolean' && typeof def !== 'function') {
+      console.error('props 属性默认值类型要求为 boolean, 得到的为' + typeof def)
+    }
+    return { type: Boolean, required, 'default': def }
+  },
+  numDef (def = null, required = false) {
+    return { type: Number, required, 'default': def }
+  },
+  anyDef (def = '', required = false) {
+    return { required, 'default': def }
+  },
+  objDef (def = {}, required = false) {
+    return {
+      type: Object,
+      required,
+      'default': typeof def === 'function' ? def : () => def
+    }
+  },
+  arrDef (def = [], required = false) {
+    return {
+      type: Array,
+      required,
+      'default': typeof def === 'function' ? def : () => def
+    }
+  }
+}
+
+/**
  * 格式化时间
  * @param  {String || Date} time [日期 参数类型string(yyyymmdd)或date对象]
  * @param  {String} type [格式化后的分隔符，默认为空]
