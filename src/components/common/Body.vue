@@ -37,6 +37,12 @@ export default {
     return {
       router: [
         {
+          name: 'Readme',
+          child: [
+            'Readme'
+          ]
+        },
+        {
           name: 'Vue',
           child: [
             'Modifiers'
@@ -84,21 +90,49 @@ export default {
 </script>
 
 <style lang="less">
-  .body {
-    .el-aside {
-      background-color: #D3DCE6;
-      color: #fff;
-      text-align: center;
-      overflow: hidden;
-      padding-right: 10px;
-      .el-menu {
-        background: transparent;
-        border: none;
-      }
-    }
-    .el-main {
-      background-color: #33404c;
-      color: #fff;
+.body {
+  h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+  }
+  a {
+    color: #fff;
+  }
+  h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+  }
+  p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+  .el-aside {
+    background-color: #d3dce6;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    padding-right: 10px;
+    .el-menu {
+      background: transparent;
+      border: none;
     }
   }
+  .el-main {
+    background-color: #33404c;
+    color: #fff;
+  }
+}
 </style>

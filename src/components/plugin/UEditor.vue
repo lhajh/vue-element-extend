@@ -11,13 +11,12 @@
     height="100%"
     frameborder="0"
   ></iframe>
-  <div v-else>
-    <script
-      :id="ueId"
-      type="text/plain"
-      name="content" />
-    </div>
-</div>
+  <script
+    v-else
+    :id="ueId"
+    type="text/plain"
+    name="content" />
+  </div>
 </template>
 
 <script>
@@ -42,7 +41,8 @@ export default {
       src: '',
       baseConfig: {
         UEDITOR_HOME_URL: '/static/plugin/ue/',
-        serverUrl: '/static/plugin/ue/jsp/config.js'
+        serverUrl: '/static/plugin/ue/jsp/config.json',
+        initialFrameWidth: '100%'
       }
     }
   },
@@ -93,7 +93,9 @@ export default {
         if (window.UE.getEditor) {
           clearInterval(inter)
           this.instance = window.UE.getEditor(this.ueId, { ...this.baseConfig, ...this.config })
-          this.instance.addListener('ready', this.doReady)
+          // http://fex.baidu.com/ueditor/#qa-ready
+          // this.instance.addListener('ready', this.doReady)
+          this.instance.ready(this.doReady)
           this.instance.addListener('contentChange', this.contentChange)
           this.instance.addListener('blur', this.blur)
           this.instance.addListener('focus', this.focus)
@@ -110,6 +112,8 @@ export default {
     doReady () {
       this.$emit('ready', this.instance)
       this.editorReady = true
+      // 设置编辑器内容区高度，但会出现滚动条
+      // this.instance.setHeight(this.height === 'auto' ? 100 : this.height)
       this.instance.setContent(this.value)
     },
     contentChange () {
@@ -186,6 +190,7 @@ export default {
 
 <style lang="less">
 .u-editor {
+  background: #fff;
   .edui-editor {
     min-height: 300px;
   }
