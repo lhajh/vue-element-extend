@@ -24,6 +24,7 @@ import { PROP } from 'utils'
 
 const EDITOR_SCRIPT_ID = 'editorScriptTag'
 const EDITOR_CONFIG_ID = 'configScriptTag'
+const pathname = window.location.pathname
 
 export default {
   data () {
@@ -40,14 +41,14 @@ export default {
       isFocus: false,
       src: '',
       baseConfig: {
-        UEDITOR_HOME_URL: '/static/plugin/ue/',
-        serverUrl: '/static/plugin/ue/jsp/config.json',
+        UEDITOR_HOME_URL: `${pathname}static/plugin/ue/`,
+        serverUrl: `${pathname}static/plugin/ue/jsp/config.json`,
         initialFrameWidth: '100%'
       }
     }
   },
   props: {
-    path: PROP.strDef('/static/plugin/ue/'),
+    path: PROP.strDef(`${pathname}static/plugin/ue/`),
     config: PROP.objDef({}),
     value: PROP.strDef(''),
     disabled: PROP.boolDef(false),
@@ -58,7 +59,7 @@ export default {
       if (this.disabled) {
         // 将 editor 中的内容保存到 sessionStorage
         sessionStorage.setItem(this.iframeId, val)
-        this.src = `/static/ueditor.html?id=${this.iframeId}&_t=${Date.now()}`
+        this.src = `${pathname}static/ueditor.html?id=${this.iframeId}&_t=${Date.now()}`
         this.resizeHeight()
         return
       }
@@ -163,7 +164,7 @@ export default {
   created () {
     if (this.disabled) {
       sessionStorage.setItem(this.iframeId, this.value)
-      this.src = `/static/ueditor.html?id=${this.iframeId}&_t=${Date.now()}`
+      this.src = `${pathname}static/ueditor.html?id=${this.iframeId}&_t=${Date.now()}`
       // 如果 iframe 父元素未设置高度，让 iframe 撑开
       this.resizeHeight()
     } else {

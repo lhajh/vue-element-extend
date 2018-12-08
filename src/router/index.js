@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Body from 'common/Body'
 
+import Readme from 'business/readme/Readme'
 import Modifiers from 'business/vue/Modifiers'
 import EditableTable from 'business/element-ui/EditableTable'
 import TreeCheckboxs from 'business/element-ui/TreeCheckboxs'
@@ -24,6 +25,11 @@ export default new Router({
       name: 'Body',
       component: Body,
       children: [
+        {
+          path: '/Readme',
+          name: 'Readme',
+          component: Readme
+        },
         {
           path: '/Modifiers',
           name: 'Modifiers',
