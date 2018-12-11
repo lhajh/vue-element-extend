@@ -7,7 +7,7 @@
   <!-- 让IE浏览器使用最高的版本进行渲染 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <link rel="shortcut icon" href="/vue-element-extend/dist/static/img/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/vue-element-extend/demo/static/img/favicon.ico" type="image/x-icon">
   <meta charset="utf-8">
   <title>vue-element-extend</title>
   <style type="text/css">
@@ -23,7 +23,7 @@
     }
 
     body {
-      background: url(/vue-element-extend/dist/static/img/bg.jpeg) no-repeat;
+      background: url(/vue-element-extend/demo/static/img/bg.jpeg) no-repeat;
       background-size: 100% 100%;
       -webkit-touch-callout: none;
       -webkit-user-select: none;
@@ -266,7 +266,7 @@
     </form>
   </div>
 </body>
-<script type="text/javascript" src="/vue-element-extend/dist/static/plugin/jquery.min.js"></script>
+<script type="text/javascript" src="/vue-element-extend/demo/static/plugin/jquery.min.js"></script>
 <script type="text/javascript">
   $('.btn-primary').click(login)
   $('.username, .password').bind('keypress', function (event) {
@@ -293,7 +293,7 @@
       error('密码错误')
       return
     }
-    window.location.href = '/vue-element-extend/dist/#/Readme'
+    window.location.href = '/vue-element-extend/demo/#/Readme'
   }
   function error(text) {
     $('.error').text(text).fadeIn(100, function () {
