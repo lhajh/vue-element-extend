@@ -49,7 +49,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/vue-element-extend-demo/',
+    assetsPublicPath: '/vue-element-extend/dist/',
 
     /**
      * Source Maps

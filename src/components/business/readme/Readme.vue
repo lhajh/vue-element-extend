@@ -14,7 +14,7 @@
     <br>
     <br>
     <a
-      href="https://lhajh.github.io/vue-element-extend-demo/static/login.html"
+      href="https://lhajh.github.io/vue-element-extend/dist/static/login.html"
       target="_blank"
     >预览地址</a>
   </div>
